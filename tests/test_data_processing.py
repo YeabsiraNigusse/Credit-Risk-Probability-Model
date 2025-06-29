@@ -208,6 +208,9 @@ class TestFeatureEngineer:
             'total_transactions': [20, 15],
             'total_amount': [1000, 800],
             'avg_amount': [50, 53.33],
+            'std_amount': [10, 15],
+            'min_amount': [30, 40],
+            'max_amount': [80, 90],
             'customer_tenure_days': [100, 120],
             'transaction_velocity': [0.2, 0.125]
         })
