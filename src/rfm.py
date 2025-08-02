@@ -10,9 +10,10 @@ def compute_rfm(df, snapshot_date):
         'TransactionId': 'count',
         'Value': 'sum'
     }).reset_index()
-
     rfm.columns = ['CustomerId', 'Recency', 'Frequency', 'Monetary']
     return rfm
+
+# etc...
 
 def scale_rfm(rfm):
     scaler = StandardScaler()

@@ -1,20 +1,35 @@
 version: '3.8'
 
 services:
-  api:
-    build: .
-    ports:
-      - "8000:8000"
-    depends_on:
-      - mlflow
-    environment:
-      - MLFLOW_TRACKING_URI=http://mlflow:5000
 
   mlflow:
-    image: mlflow:latest
-
+    image: python:3.10-slim
+    working_dir: /home/yeab/Credit-Risk-Probability-Model
+    volumes:
+      - ./mlruns:/home/yeab/Credit-Risk-Probability-Model/mlruns
+      - ./mlflow.db:/home/yeab/Credit-Risk-Probability-Model/mlflow.db
+    command: >
+      bash -c "
+        pip install --no-cache-dir mlflow pandas scikit-learn &&
+        mlflow server \
+          --backend-store-uri sqlite:////home/yeab/Credit-Risk-Probability-Model/mlflow.db \
+          --default-artifact-root /home/yeab/Credit-Risk-Probability-Model/mlruns \
+          --serve-artifacts \
+          --host 0.0.0.0 --port 5000
+      "
     ports:
       - "5000:5000"
-    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root /mlruns
+
+  api:
+    build:
+      context: ./src/api
+      dockerfile: Dockerfile
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    depends_on:
+      - mlflow
+    ports:
+      - "8000:8000"
     volumes:
-      - ./mlruns:/mlruns
+      # <-- this must point at the same ./mlruns as above
+      - ./mlruns:/home/yeab/Credit-Risk-Probability-Model/mlruns
