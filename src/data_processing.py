@@ -314,3 +314,13 @@ if __name__ == "__main__":
     # Example usage
     print("Data Processing Module for Credit Risk Model")
     print("This module provides RFM analysis and feature engineering capabilities")
+
+
+
+
+# what is rfm and why
+# how do is it related with creating the feature we want (risk lable for each customer)
+# is there any reason we needed a risk segment rather than having to lable them at once
+# what are main component of rfm and what did they say about risk(customer performance)
+# 
+#  

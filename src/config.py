@@ -1,4 +1,4 @@
 def get_paths():
     return {
-        'data': '../data/raw/data.csv',
+        'data': '../data/data.csv',
     }
