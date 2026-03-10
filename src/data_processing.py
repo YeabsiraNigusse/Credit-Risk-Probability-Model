@@ -323,4 +323,13 @@ if __name__ == "__main__":
 # is there any reason we needed a risk segment rather than having to lable them at once
 # what are main component of rfm and what did they say about risk(customer performance)
 # 
-#  
+
+
+
+# so what we have as a feature is transaction of customers and we want to analise the customer credit risk with percentage
+
+# so to create a feature using groupby we soecify the column then specify column you want to transform
+
+# e.g df.groupby(["CustomerId"])["Value"].sum()
+#     df.groupby(["CustomerId","ProductId"])["Amount"].sum() // this gives focus for the two and form sum based on amount
+#     
